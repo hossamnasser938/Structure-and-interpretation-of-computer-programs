@@ -1,9 +1,9 @@
-import { makeLiteral } from "./literal/literal";
+const acorn = require("acorn");
 
 export const parse = (program) => {
-  // relying on the parser provided by SICPJS
+  const ast = acorn.parse(program, { ecmaVersion: 2020 });
 
-  if (!Number.isNaN(parseFloat(program))) {
-    return makeLiteral(parseFloat(program));
-  }
+  console.log(JSON.stringify(ast, null, 2));
+
+  return ast.body;
 };

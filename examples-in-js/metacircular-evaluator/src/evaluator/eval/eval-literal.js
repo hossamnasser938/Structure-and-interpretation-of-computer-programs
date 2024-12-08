@@ -1,4 +1,4 @@
-import { literalVal } from "../../parser/literal/literal";
+import { literalVal } from "../../parser/literal";
 
 export const evalLiteral = (literalObj) => {
   return literalVal(literalObj);
