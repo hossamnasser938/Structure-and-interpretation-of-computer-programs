@@ -1,4 +1,4 @@
-import { lookupEnv } from "../../environment/environment";
+import { lookupEnv } from "../../environment";
 
 export const evalName = (nameToken, env) => {
   return lookupEnv(nameToken, env);

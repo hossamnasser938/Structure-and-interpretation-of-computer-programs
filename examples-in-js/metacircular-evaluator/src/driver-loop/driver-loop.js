@@ -1,8 +1,8 @@
-import { extendEnvWithUnassignedKeys } from "../environment/environment";
+import { extendEnvWithUnassignedKeys } from "../environment";
 import { metaEval } from "../evaluator";
 import { prompt } from "../helpers";
 import { parse } from "../parser";
-import { scanLocals } from "../parser/scan-locals";
+import { scanLocals } from "../parser";
 
 const promptUserForInput = () => {
   return prompt("Input: ");

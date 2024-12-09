@@ -1,1 +1,1 @@
-export { setupEnvironment } from "./environment";
+export * from "./environment";

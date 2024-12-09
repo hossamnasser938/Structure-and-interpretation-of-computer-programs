@@ -1,4 +1,4 @@
-import { assignBinding } from "../../environment/environment";
+import { assignBinding } from "../../environment";
 
 export const evalDeclaration = (keys, values, env) => {
   if (keys.length !== values.length) {
