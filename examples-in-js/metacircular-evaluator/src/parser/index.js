@@ -5,3 +5,5 @@ export * from "./sequence";
 export * from "./name";
 export * from "./declaration";
 export * from "./assignment";
+export * from "./block";
+export * from "./conditional";

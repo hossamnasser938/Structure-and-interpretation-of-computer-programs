@@ -9,18 +9,28 @@ import {
   isAssignment,
   literalVal,
   declarationVariablesExpressions,
+  isBlock,
+  blockStatements,
+  isConditional,
+  conditionalPredicate,
+  conditionalConsequent,
+  conditionalAlternative,
 } from "../../parser";
 import { evalLiteral } from "./eval-literal";
 import { evalSequence } from "./eval-sequence";
 import { evalName } from "./eval-name";
 import { evalDeclaration } from "./eval-declaration";
 import { evalAssignment } from "./eval-assignment";
+import { evalBlock } from "./eval-block";
+import { evalConditional } from "./eval-conditional";
 
 export const metaEval = (input, env) => {
   if (isLiteral(input)) {
     return evalLiteral(literalVal(input));
   } else if (isSequence(input)) {
     return evalSequence(sequenceStatements(input), env);
+  } else if (isBlock(input)) {
+    return evalBlock(blockStatements(input), env);
   } else if (isName(input)) {
     return evalName(nameToken(input), env);
   } else if (isDeclaration(input)) {
@@ -31,6 +41,13 @@ export const metaEval = (input, env) => {
     );
   } else if (isAssignment(input)) {
     return evalAssignment(input, env);
+  } else if (isConditional(input)) {
+    return evalConditional(
+      conditionalPredicate(input),
+      conditionalConsequent(input),
+      conditionalAlternative(input),
+      env
+    );
   } else {
     throw new Error(`Unsupported syntax ${JSON.stringify(input, null, 2)}`);
   }
