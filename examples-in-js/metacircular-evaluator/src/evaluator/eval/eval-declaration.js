@@ -1,11 +1,13 @@
 import { assignBinding } from "../../environment";
+import { metaEval } from "./eval";
 
-export const evalDeclaration = (keys, values, env) => {
-  if (keys.length !== values.length) {
-    throw new Error("keys and values different items count");
+export const evalDeclaration = (keys, expressions, env) => {
+  if (keys.length !== expressions.length) {
+    throw new Error("keys and expressions different items count");
   }
 
   keys.forEach((key, index) => {
-    assignBinding(key, values[index], env);
+    const expression = expressions[index];
+    assignBinding(key, metaEval(expression, env), env);
   });
 };

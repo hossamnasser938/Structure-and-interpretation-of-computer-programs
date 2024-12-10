@@ -9,6 +9,6 @@ export const assignmentKey = (obj) => {
   return obj.expression.left.name;
 };
 
-export const assignmentValue = (obj) => {
-  return obj.expression.right.value;
+export const assignmentExpression = (obj) => {
+  return obj.expression.right;
 };

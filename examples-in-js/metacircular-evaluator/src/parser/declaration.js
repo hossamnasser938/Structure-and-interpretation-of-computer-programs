@@ -5,5 +5,5 @@ export const isDeclaration = (obj) => {
 export const declarationVariablesKeys = (obj) =>
   obj.declarations.map((declaration) => declaration.id.name);
 
-export const declarationVariablesValues = (obj) =>
-  obj.declarations.map((declaration) => declaration.init.value);
+export const declarationVariablesExpressions = (obj) =>
+  obj.declarations.map((declaration) => declaration.init);

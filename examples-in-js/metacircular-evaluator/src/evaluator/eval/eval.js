@@ -3,14 +3,12 @@ import {
   isSequence,
   sequenceStatements,
   declarationVariablesKeys,
-  declarationVariablesValues,
   isDeclaration,
   isName,
   nameToken,
   isAssignment,
-  assignmentKey,
-  assignmentValue,
   literalVal,
+  declarationVariablesExpressions,
 } from "../../parser";
 import { evalLiteral } from "./eval-literal";
 import { evalSequence } from "./eval-sequence";
@@ -28,12 +26,12 @@ export const metaEval = (input, env) => {
   } else if (isDeclaration(input)) {
     return evalDeclaration(
       declarationVariablesKeys(input),
-      declarationVariablesValues(input),
+      declarationVariablesExpressions(input),
       env
     );
   } else if (isAssignment(input)) {
-    return evalAssignment(assignmentKey(input), assignmentValue(input), env);
+    return evalAssignment(input, env);
   } else {
-    throw new Error("Unsupported syntax", input);
+    throw new Error(`Unsupported syntax ${JSON.stringify(input, null, 2)}`);
   }
 };
