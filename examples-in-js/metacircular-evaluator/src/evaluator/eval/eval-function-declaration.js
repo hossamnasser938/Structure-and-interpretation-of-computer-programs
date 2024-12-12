@@ -13,6 +13,7 @@ export const evalFunctionDeclaration = (input, env) => {
       functionDeclarationParams(input),
       functionDeclarationBody(input),
       env
-    )
+    ),
+    env
   );
 };

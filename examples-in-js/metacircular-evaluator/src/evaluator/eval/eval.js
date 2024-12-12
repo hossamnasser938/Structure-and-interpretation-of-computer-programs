@@ -3,7 +3,7 @@ import {
   isSequence,
   sequenceStatements,
   declarationVariablesKeys,
-  isDeclaration,
+  isVariableDeclaration,
   isName,
   nameToken,
   isAssignment,
@@ -37,7 +37,7 @@ export const metaEval = (input, env) => {
     return evalBlock(blockStatements(input), env);
   } else if (isName(input)) {
     return evalName(nameToken(input), env);
-  } else if (isDeclaration(input)) {
+  } else if (isVariableDeclaration(input)) {
     return evalDeclaration(
       declarationVariablesKeys(input),
       declarationVariablesExpressions(input),

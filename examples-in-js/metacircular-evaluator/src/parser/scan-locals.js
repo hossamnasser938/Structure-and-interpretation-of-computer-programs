@@ -1,11 +1,26 @@
+import { declarationVariablesKeys, isVariableDeclaration } from "./declaration";
+import {
+  functionDeclarationName,
+  isFunctionDeclaration,
+} from "./function-declaration";
+
 export const scanLocals = (ast) => {
-  const variableDeclarations = ast.filter(
-    (item) => item.type === "VariableDeclaration"
+  const variableDeclarations = ast.filter(isVariableDeclaration);
+
+  const functionDeclarations = ast.filter(isFunctionDeclaration);
+
+  const variableDeclarationLocals = variableDeclarations.reduce(
+    (acc, variableDeclaration) => {
+      return acc.concat(declarationVariablesKeys(variableDeclaration));
+    },
+    []
   );
 
-  return variableDeclarations.reduce((acc, variableDeclaration) => {
-    return acc.concat(
-      variableDeclaration.declarations.map((declaration) => declaration.id.name)
-    );
-  }, []);
+  const functionDeclarationLocals = functionDeclarations.map(
+    functionDeclarationName
+  );
+
+  const locals = variableDeclarationLocals.concat(functionDeclarationLocals);
+
+  return locals;
 };

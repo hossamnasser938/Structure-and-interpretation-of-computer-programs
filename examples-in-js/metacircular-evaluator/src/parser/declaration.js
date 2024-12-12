@@ -1,4 +1,4 @@
-export const isDeclaration = (obj) => {
+export const isVariableDeclaration = (obj) => {
   return obj.type === "VariableDeclaration";
 };
 
