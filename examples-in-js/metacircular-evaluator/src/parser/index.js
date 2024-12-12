@@ -9,3 +9,4 @@ export * from "./block";
 export * from "./conditional";
 export * from "./lambda";
 export * from "./function-declaration";
+export * from "./empty-statement";
