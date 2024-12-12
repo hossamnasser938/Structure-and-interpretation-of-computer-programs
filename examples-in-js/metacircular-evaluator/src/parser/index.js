@@ -7,3 +7,4 @@ export * from "./declaration";
 export * from "./assignment";
 export * from "./block";
 export * from "./conditional";
+export * from "./lambda";
