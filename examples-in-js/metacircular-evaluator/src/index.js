@@ -9,7 +9,7 @@ JavaScript program as Text
 */
 
 import { driverLoop } from "./driver-loop";
-import { setupEnvironment } from "./environment";
+import { setupGlobalEnvironment } from "./environment";
 
-const theGlobalEnv = setupEnvironment();
+const theGlobalEnv = setupGlobalEnvironment();
 driverLoop(theGlobalEnv);
