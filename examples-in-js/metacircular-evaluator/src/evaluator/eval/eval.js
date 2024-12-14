@@ -18,6 +18,8 @@ import {
   isLambda,
   isFunctionDeclaration,
   isEmptyStatement,
+  isApplication,
+  isReturnStatement,
 } from "../../parser";
 import { evalLiteral } from "./eval-literal";
 import { evalSequence } from "./eval-sequence";
@@ -28,6 +30,8 @@ import { evalBlock } from "./eval-block";
 import { evalConditional } from "./eval-conditional";
 import { evalLambda } from "./eval-lambda";
 import { evalFunctionDeclaration } from "./eval-function-declaration";
+import { evalApplication } from "./eval-application";
+import { evalReturn } from "./eval-return";
 
 export const metaEval = (input, env) => {
   if (isLiteral(input)) {
@@ -59,6 +63,10 @@ export const metaEval = (input, env) => {
     return evalFunctionDeclaration(input, env);
   } else if (isEmptyStatement(input)) {
     return undefined;
+  } else if (isApplication(input)) {
+    return evalApplication(input, env);
+  } else if (isReturnStatement(input)) {
+    return evalReturn(input, env);
   } else {
     throw new Error(`Unsupported syntax ${JSON.stringify(input, null, 2)}`);
   }

@@ -10,3 +10,6 @@ export * from "./conditional";
 export * from "./lambda";
 export * from "./function-declaration";
 export * from "./empty-statement";
+export * from "./application";
+export * from "./return";
+export * from "./wrap-in-return-statement-if-needed";

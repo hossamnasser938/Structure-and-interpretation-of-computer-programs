@@ -21,3 +21,9 @@ export const makeCompoundFunction = (params, body, env) => {
 export const makePrimitiveFunction = (params, body, env) => {
   return makeFunction(PRIMITIVE_FUNCTION, params, body, env);
 };
+
+export const functionParams = (func) => func.params;
+
+export const functionBody = (func) => func.body;
+
+export const functionEnv = (func) => func.env;
