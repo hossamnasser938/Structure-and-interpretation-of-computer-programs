@@ -7,10 +7,15 @@ import {
   functionParams,
   isCompoundFunction,
   isPrimitiveFunction,
+  primitiveFunctionImplementation,
 } from "./eval/function-representation";
 import { isReturnValue, returnValue } from "./eval/return-value-representation";
 
-const applyPrimitiveFunction = (func, args) => {};
+const applyPrimitiveFunction = (func, args) => {
+  const implementation = primitiveFunctionImplementation(func);
+
+  return implementation(...args);
+};
 
 const applyCompoundFunction = (func, args) => {
   const extendedEnv = extendEnv(functionParams(func), args, functionEnv(func));
@@ -28,7 +33,7 @@ const applyCompoundFunction = (func, args) => {
 
 export const apply = (func, args) => {
   if (isPrimitiveFunction(func)) {
-    applyPrimitiveFunction(func, args);
+    return applyPrimitiveFunction(func, args);
   } else if (isCompoundFunction(func)) {
     return applyCompoundFunction(func, args);
   } else {

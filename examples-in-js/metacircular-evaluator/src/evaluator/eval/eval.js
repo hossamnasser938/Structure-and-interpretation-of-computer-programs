@@ -20,6 +20,7 @@ import {
   isEmptyStatement,
   isApplication,
   isReturnStatement,
+  isOperatorCombination,
 } from "../../parser";
 import { evalLiteral } from "./eval-literal";
 import { evalSequence } from "./eval-sequence";
@@ -32,6 +33,7 @@ import { evalLambda } from "./eval-lambda";
 import { evalFunctionDeclaration } from "./eval-function-declaration";
 import { evalApplication } from "./eval-application";
 import { evalReturn } from "./eval-return";
+import { evalOperatorCombination } from "./eval-operator-combination";
 
 export const metaEval = (input, env) => {
   if (isLiteral(input)) {
@@ -65,6 +67,8 @@ export const metaEval = (input, env) => {
     return undefined;
   } else if (isApplication(input)) {
     return evalApplication(input, env);
+  } else if (isOperatorCombination(input)) {
+    return evalOperatorCombination(input, env);
   } else if (isReturnStatement(input)) {
     return evalReturn(input, env);
   } else {

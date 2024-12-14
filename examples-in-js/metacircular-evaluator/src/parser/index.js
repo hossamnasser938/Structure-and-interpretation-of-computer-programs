@@ -13,3 +13,4 @@ export * from "./empty-statement";
 export * from "./application";
 export * from "./return";
 export * from "./wrap-in-return-statement-if-needed";
+export * from "./operator-combination";
